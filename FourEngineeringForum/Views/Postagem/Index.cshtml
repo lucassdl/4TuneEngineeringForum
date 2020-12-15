@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FourEngineeringForum.Models.Postagem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<div class="form-group">
+    @Html.ActionLink("Publicar Mensagem", "Adicionar", null, null, new { @class = "btn btn-primary" })
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading"><h3><b>Publicações para o tópico: @ViewBag.Nome<span class="badge" style="margin-left:10px; font-size:15px">@Model.Count() Postagens</span></b></h3></div>
+    <div class="panel-body">
+        @foreach (var item in Model)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <b>
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        @Html.DisplayFor(modelItem => item.Usuario.Nome)     Publicado em: @Html.DisplayFor(modelItem => item.DataDePublicacao)
+                    </b>
+                    @if (@item.IdDoUsuario == Convert.ToInt16(Session["usuarioAutenticado"]))
+                    {
+                        @Html.ActionLink("Editar", "Editar", new { idDoPost = item.ID }, new { @class = "btn btn-warning" })
+                    }
+                </div>
+                <div class="panel-body">
+                    <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+                    @Html.DisplayFor(modelItem => item.Mensagem)
+                    
+                </div>
+            </div>
+        }
+    </div>
+</div>

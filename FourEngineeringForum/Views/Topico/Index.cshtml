@@ -1,0 +1,38 @@
+﻿@model IEnumerable<FourEngineeringForum.Models.Topico>
+
+@{
+    ViewBag.Title = "Lista de Tópicos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<div class="form-group">
+    @if (Convert.ToInt16(Session["perfilDoUsuario"]) == 0)
+    {
+        @Html.ActionLink("Cadastro", "Adicionar", null, null, new { @class = "btn btn-primary" })
+
+    }
+    else
+    {
+        <span style="font-style:italic">(Somente Administrador pode criar novo Topico)</span>
+    }
+</div>
+
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Descrição</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @Html.DisplayFor(modelItem => item.Nome) </td>
+            <td> @Html.DisplayFor(modelItem => item.Descricao) </td>
+            <td>
+                @Html.ActionLink("Visualizar Tópico", "Index", "Postagem", new { idDoTopico = item.ID }, null)
+        </tr>
+    }
+</table>

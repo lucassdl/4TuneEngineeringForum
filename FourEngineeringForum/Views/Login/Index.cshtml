@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <!--Form Autenticação-->
+            <div class="col-lg-6">
+                <h2>Autenticação de usuário</h2>
+                <form method="post" action="/Login/Login" id="frmLogin">
+                    <div class="form-group">
+                        <label for="login">Login(email):</label><br />
+                        <input type="email" id="login" name="login" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Senha</label><br />
+                        <input type="password" id="senha" name="senha" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Entrar" class="btn btn-default" />
+
+                    </div>
+                </form>
+                @{
+                    if (IsPost)
+                    {
+                        if (@ViewBag.ErroAutenticacao != String.Empty)
+                        {
+                            @ViewBag.ErroAutenticacao
+                        }
+                    }
+                }
+            </div>
+            <!--Form Autenticação-->
+            <div class="col-lg-6">
+                <h2>Cadastro de usuário</h2>
+                <form method="post" action="/Login/CadastrarUsuario" id="frmCadUsuer">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label><br />
+                        <input type="text" id="nome" name="Nome" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="login">Login(email):</label><br />
+                        <input type="email" id="login_email" name="Login" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Senha</label><br />
+                        <input type="password" id="senha" name="Senha" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Cadastrar" class="btn btn-default" />
+                        @{
+                            if (IsPost)
+                            {
+                                if (@ViewBag.StatusCadastro != String.Empty)
+                                {
+                                    @ViewBag.StatusCadastro
+                                }
+                            }
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

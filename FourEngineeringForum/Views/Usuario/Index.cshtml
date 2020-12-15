@@ -1,0 +1,64 @@
+﻿@using FourEngineeringForum.Util
+
+@model IEnumerable<FourEngineeringForum.Models.Usuario>
+
+
+@{
+    ViewBag.Title = "Lista de Usuários";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<p>
+    @Html.ActionLink("Cadastro", "Adicionar", null, null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PerfilDoUsuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Login)
+    </td>
+    <td>
+        @if (item.PerfilDoUsuario == Convert.ToInt16(ListaDePerfisDoUsuario.Administrador))
+        {
+            <span>Administrador</span>
+        }
+        else
+        {
+            <span>Usuário</span>
+        }
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Editar", new { id = item.ID  }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Exibir", "Detalhes", new { id = item.ID }, new { @class = "btn btn-info" })
+        @Html.ActionLink("Excluir", "Excluir", new { id = item.ID }, new{ @class = "btn btn-danger" })
+    </td>
+</tr>
+}
+
+</table>
+
+
+
+
+
+
+
