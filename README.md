@@ -9,10 +9,6 @@ Senha = "admin123"
 
 Com este usuário terá acesso a qualquer funcionalidade como cadastro de usuários e topicos.
 
-Projeto Compilado
---------------------
-Colocar diretamente na pasta wwwRoot do IIS e fazer as configurações necessárias de pool de aplicação do servidor IIS
-
 Projeto Solution
 --------------------
 Código fonte do projeto, sendo possivel acessar o codigo e debugar a aplicação.
